@@ -1,24 +1,15 @@
-# new file ready to roll
-class Flight():
-    def __init__(self, available_seats):
-        self.available_seats = available_seats
-        self.passengers = {}
-
-    def bookSeat(self, person):
-        remaining_seats = self.available_seats
-        if not remaining_seats:
-            print(f'seats not available for {person}')
-            return
-        else:
-            self.passengers[person] = "booked"
-            self.available_seats -= 1
+def main():
+    i = get_positive()
+    print(i)
 
 
-people = ["tony", "steve", "peter", "nina", "howrang"]
+def get_positive():
+    while True:
+        n = int(input("num: "))
+        if n > 0:
+            break
+    return n
 
-mig32 = Flight(3)
 
-for guy in people:
-    mig32.bookSeat(guy)
-
-print(f"passenger: {mig32.passengers}")
+if __name__ == "__main__":
+    main()
