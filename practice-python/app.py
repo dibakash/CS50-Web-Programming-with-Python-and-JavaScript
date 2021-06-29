@@ -1,15 +1,13 @@
+import sys
+
+
 def main():
-    i = get_positive()
-    print(i)
-# testing
-
-
-def get_positive():
-    while True:
-        n = int(input("num: "))
-        if n > 0:
-            break
-    return n
+    if len(sys.argv) != 2:
+        print("missing command line args")
+        sys.exit("1")
+    else:
+        print("Hello World")
+        sys.exit("0")
 
 
 if __name__ == "__main__":
