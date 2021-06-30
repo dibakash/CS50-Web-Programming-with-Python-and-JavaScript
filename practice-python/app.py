@@ -1,13 +1,8 @@
-import sys
-
+# new python file
 
 def main():
-    if len(sys.argv) != 2:
-        print("missing command line args")
-        sys.exit("1")
-    else:
-        print("Hello World")
-        sys.exit("0")
+    name = input("what is your name? : ")
+    print(f"Hello, {name}")
 
 
 if __name__ == "__main__":
