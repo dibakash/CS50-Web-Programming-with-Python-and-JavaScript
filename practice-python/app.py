@@ -1,8 +1,9 @@
 # new python file
 
+
 def main():
-    name = input("what is your name? : ")
-    print(f"Hello, {name}")
+    # Recognize speech using Google Speech Recognition
+    print("You said:")
 
 
 if __name__ == "__main__":
