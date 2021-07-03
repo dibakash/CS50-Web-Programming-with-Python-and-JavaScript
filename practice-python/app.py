@@ -1,9 +1,12 @@
 # new python file
+import sys
 
 
 def main():
-    # Recognize speech using Google Speech Recognition
-    print("You said:")
+    if len(sys.argv) != 2:
+        print("not 2 args")
+        exit(1)
+    print(sys.argv)
 
 
 if __name__ == "__main__":
