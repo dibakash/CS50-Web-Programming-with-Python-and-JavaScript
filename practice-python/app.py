@@ -5,7 +5,7 @@ import sys
 def main():
     if len(sys.argv) != 2:
         print("not 2 args")
-        exit(1)
+        sys.exit(1)
     print(sys.argv)
 
 
