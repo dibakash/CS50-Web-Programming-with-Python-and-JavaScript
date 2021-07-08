@@ -3,8 +3,8 @@ import sys
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("need two arguments")
+    if len(sys.argv) != 1:
+        print("no arguments please")
     else:
         print(sys.argv[0])
 
