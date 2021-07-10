@@ -1,12 +1,13 @@
-# testing myself
+# revise
+
 import sys
 
 
 def main():
-    if len(sys.argv) != 1:
-        print("no arguments please")
+    if len(sys.argv) != 2:
+        print("need one argument")
     else:
-        print(sys.argv[0])
+        print(sys.argv[1])
 
 
 if __name__ == "__main__":
