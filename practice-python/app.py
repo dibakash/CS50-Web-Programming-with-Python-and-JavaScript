@@ -1,14 +1,8 @@
-# revise
+from flask import Flask, render_template
 
-import sys
-
-
-def main():
-    if len(sys.argv) != 2:
-        print("need one argument")
-    else:
-        print(sys.argv[1])
+app = Flask(__name__)
 
 
-if __name__ == "__main__":
-    main()
+@app.route("/")
+def index():
+    return render_template("index.html", name="Dibakash")
