@@ -1,10 +1,27 @@
 from flask import Flask, render_template, request, redirect
+from cs50 import SQL
+# from flask_mail import Mail, Message
 
 app = Flask(__name__)
+# app.config["MAIL_DEFAULT_SENDER"] = "clients.digiattract@gmail.com"
+# app.config["MAIL_PASSWORD"] = "Digi3691234Emc@2"
+# app.config["MAIL_PORT"] = 587
+# app.config["MAIL_SERVER"] = "smtp.gmail.com"
+# app.config["MAIL_USE_TLS"] = True
+# app.config["MAIL_USERNAME"] = "clients.digiattract@gmail.com"
 
-REGISTRANTS = {}
+SPORTS = [
+    "MMA",
+    "Karate",
+    "Soccer",
+    "Skating",
+    "Cricket",
+    "Fencing"
+]
 
-SPORTS = ["cricket", "MMA", "soccer", "skating", "football"]
+db = SQL("sqlite:///data.db")
+
+# mail = Mail(app)
 
 
 @app.route("/")
@@ -14,20 +31,28 @@ def index():
 
 @app.route("/register", methods=["POST"])
 def register():
-    name = request.form.get("name")
+    name = request.form.get("firstName")
+    email = request.form.get("email")
     sport = request.form.get("sport")
     if not name:
-        return render_template("failure.html", message="Name not provided")
-    if not sport:
-        return render_template("failure.html", message="Sport not provided")
+        return render_template("failure.html", error="Name not provided")
+    if not email:
+        return render_template("failure.html", error="Email not provided")
     if sport not in SPORTS:
-        return render_template("failure.html", message="Incorrect Sports")
+        return render_template("failure.html", error="wrong sports!")
 
-    REGISTRANTS[name] = sport
+    # save data
+    db.execute(
+        "INSERT INTO registrants(name, email, sport) VALUES(?, ? ,?)", name, email, sport)
 
-    return render_template("success.html", firstName=name, sport=sport)
+    # send mail
+    # message = Message("You are successfully registered", recipients=[email])
+    # mail.send(message)
+
+    return render_template("success.html", name=name)
 
 
 @app.route("/registrants")
 def registrants():
-    return render_template("registrants.html", registrants=REGISTRANTS)
+    registrants = db.execute("SELECT * FROM registrants")
+    return render_template("registrants.html", registrants=registrants)

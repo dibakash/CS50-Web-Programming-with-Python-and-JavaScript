@@ -1,3 +1,10 @@
 *.exe
 .vscode/
-
+makeDB.py
+/_pycache_
+_pycache_/
+shows.db
+*.csv
+*.mp4
+*.mp3
+*.png
