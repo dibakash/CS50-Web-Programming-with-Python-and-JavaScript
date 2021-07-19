@@ -4,7 +4,7 @@ from cs50 import SQL
 
 app = Flask(__name__)
 # app.config["MAIL_DEFAULT_SENDER"] = "clients.digiattract@gmail.com"
-# app.config["MAIL_PASSWORD"] = "Digi3691234Emc@2"
+# app.config["MAIL_PASSWORD"] = "no pass here bad practice"
 # app.config["MAIL_PORT"] = 587
 # app.config["MAIL_SERVER"] = "smtp.gmail.com"
 # app.config["MAIL_USE_TLS"] = True
