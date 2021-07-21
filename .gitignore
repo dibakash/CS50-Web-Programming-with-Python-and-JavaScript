@@ -1,6 +1,7 @@
 *.exe
 .vscode/
 makeDB.py
+test.py
 /_pycache_
 _pycache_/
 shows.db
