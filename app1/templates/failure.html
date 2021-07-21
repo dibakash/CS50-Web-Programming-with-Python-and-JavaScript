@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+<!-- message -->
+{% block body %}
+<h1>You are not registered</h1>
+
+<p><strong>Reason:</strong></p>
+<ol>
+  {% for error in errors %}
+  <li>{{error}}</li>
+  {% endfor %}
+</ol>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+<!-- table -->
+{% block body %}
+<main>
+  <h1>Registered Athletes</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Selected Sport</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for registrant in registrants %}
+      <tr>
+        <td>{{registrant.id}}</td>
+        <td>{{registrant.name}}</td>
+        <td>{{registrant.sport}}</td>
+        <td>{{registrant.email}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</main>
+{% endblock %}

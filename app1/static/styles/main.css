@@ -1,0 +1,41 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+main {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  gap: 1em;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+form > input[type="submit"] {
+  justify-self: center;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+tr,
+td,
+th {
+  border: 1px solid gray;
+  padding: 10px;
+}
+
