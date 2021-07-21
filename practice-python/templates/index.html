@@ -1,20 +1,19 @@
 {% extends "layout.html" %}
-<!--user form -->
+
+<!-- form -->
 {% block body %}
-<form
-  action="/register"
-  method="POST"
-  style="display: grid; margin: auto; margin-top: 40vh; width: 300px; gap: 1rem"
-  autocomplete="off"
->
-  <input type="text" name="firstName" placeholder="first name" autofocus />
-  <input type="email" name="email" placeholder="your email" />
-  <select name="sport">
-    <option value="sport" selected disabled>sport</option>
-    {% for sport in sports %}
-    <option value="{{sport}}">{{sport}}</option>
-    {% endfor %}
-  </select>
-  <button type="submit" style="width: 50%; justify-self: center">submit</button>
-</form>
+<main>
+  <h1>Registration Form</h1>
+  <form action="/register" method="POST" autocomplete="off">
+    <input type="text" name="name" autofocus />
+    <input type="email" name="email" />
+    <select name="sport">
+      <option value="sport" selected disabled>Select sport</option>
+      {% for sport in sports %}
+      <option value="{{sport}}">{{sport}}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="register" />
+  </form>
+</main>
 {% endblock %}

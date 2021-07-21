@@ -1,25 +1,30 @@
+from email import message
 from flask import Flask, render_template, request, redirect
 from cs50 import SQL
 # from flask_mail import Mail, Message
 
-app = Flask(__name__)
-# app.config["MAIL_DEFAULT_SENDER"] = "clients.digiattract@gmail.com"
-# app.config["MAIL_PASSWORD"] = "no pass here bad practice"
-# app.config["MAIL_PORT"] = 587
-# app.config["MAIL_SERVER"] = "smtp.gmail.com"
-# app.config["MAIL_USE_TLS"] = True
-# app.config["MAIL_USERNAME"] = "clients.digiattract@gmail.com"
-
 SPORTS = [
     "MMA",
-    "Karate",
-    "Soccer",
-    "Skating",
     "Cricket",
-    "Fencing"
+    "Volleyball",
+    "Skating",
+    "Dodgeball",
+    "Karate Kata",
+    "Dance",
+    "Chess"
 ]
 
 db = SQL("sqlite:///data.db")
+
+app = Flask(__name__)
+
+
+# app.config["MAIL_DEFAULT_SENDER"] = "provide email via OS "
+# app.config["MAIL_PASSWORD"] = "bad practice to provide pass word here"
+# app.config["MAIL_PORT"] = 587
+# app.config["MAIL_SERVER"] = "smtp.gmail.com"
+# app.config["MAIL_USE_TLS"] = True
+# app.config["MAIL_USERNAME"] = "provide username via OS"
 
 # mail = Mail(app)
 
@@ -31,25 +36,38 @@ def index():
 
 @app.route("/register", methods=["POST"])
 def register():
-    name = request.form.get("firstName")
+    name = request.form.get("name")
     email = request.form.get("email")
     sport = request.form.get("sport")
+    errors = []
     if not name:
-        return render_template("failure.html", error="Name not provided")
+        errors.append("name not provided")
     if not email:
-        return render_template("failure.html", error="Email not provided")
+        errors.append("email not provided")
+    if not sport:
+        errors.append("sport not selected")
+        return render_template("failure.html", errors=errors)
     if sport not in SPORTS:
-        return render_template("failure.html", error="wrong sports!")
+        errors.append("wrong sport selected")
+        return render_template("failure.html", errors=errors)
 
-    # save data
+    emails = db.execute("SELECT * FROM registrants")
+    for mail_id in emails:
+        if email == mail_id["email"]:
+            return render_template("failure.html", errors=["Email used already"])
+
     db.execute(
-        "INSERT INTO registrants(name, email, sport) VALUES(?, ? ,?)", name, email, sport)
+        "INSERT INTO registrants(name, email, sport) VALUES(?,?,?)", name, email, sport)
+    # message = Message("You are registered for sports", recipients=[email])
 
-    # send mail
-    # message = Message("You are successfully registered", recipients=[email])
     # mail.send(message)
 
-    return render_template("success.html", name=name)
+    return render_template("success.html", name=name, sport=sport)
+
+
+@app.route("/entries")
+def entries():
+    return redirect("/registrants")
 
 
 @app.route("/registrants")
