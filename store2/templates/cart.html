@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Cart</h1>
+<ol>
+    {% for book in books %}
+    <li>
+
+        {{book.title}}
+        <span>Quantity: {{ session.cart[book.id | string] }}</span>
+
+    </li>
+    {% endfor %}
+</ol>
+{% endblock %}

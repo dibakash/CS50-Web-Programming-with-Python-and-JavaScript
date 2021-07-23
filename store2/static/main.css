@@ -1,0 +1,20 @@
+body {
+  background-color: blanchedalmond;
+}
+
+ ol > li {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+ol {
+  counter-reset: c;
+}
+li {
+  counter-increment: c;
+}
+li::before {
+  content: counter(c) ":";
+  font-weight: bold;
+}
