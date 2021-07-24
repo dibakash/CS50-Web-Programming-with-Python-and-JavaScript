@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form action="/search" autocomplete="off" method="GET">
+    <input type="search" name="q" autofocus>
+    <input type="submit" value="search">
+</form>
+
+<ul>
+
+</ul>
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+<!-- <script>
+    ul = document.querySelector("ul")
+    input = document.querySelector("input");
+    input.addEventListener("keyup", function () {
+        if (input.value) {
+            $.get("/search?q=" + input.value, function (shows) {
+                let html = '';
+                for (let i in shows) {
+                    let title = shows[i].title;
+                    html += '<li>' + title + '</li>';
+                }
+                ul.innerHTML = html;
+            })
+        } else {
+            ul.innerHTML = '';
+
+        }
+    })
+
+</script> -->
+<script>
+    ul = document.querySelector("ul")
+    input = document.querySelector("input");
+    input.addEventListener("keyup", function () {
+        if (input.value.length >= 2) {
+            fetch("/search?q=" + input.value)
+                .then(response => response.json())
+                .then(data => {
+                    let html = ''
+                    for (let i in data) {
+                        let title = data[i].title;
+                        html += '<li>' + title + '</li>';
+                    }
+                    ul.innerHTML = html;
+                }
+                );
+        } else {
+            console.log("empty")
+            ul.innerHTML = '';
+
+        }
+    })
+
+</script>
+{% endblock %}

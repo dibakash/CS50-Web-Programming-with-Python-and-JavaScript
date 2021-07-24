@@ -5,11 +5,12 @@
 <ol>
     {% for book in books %}
     <li>
-
-        {{book.title}}
-        <span>Quantity: {{ session.cart[book.id | string] }}</span>
-
+        <strong>{{book.title}}</strong>
+        <strong>Quantity: </strong> <span>{{session.cart[book.id | string]}}</span>
     </li>
     {% endfor %}
 </ol>
+<button>
+    <a href="/buy">Buy</a>
+</button>
 {% endblock %}

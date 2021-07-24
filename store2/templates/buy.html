@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if cart_items %}
+<h1>your order is placed successfully for the following item/s</h1>
+<ol>
+    {% for book in cart_items  %}
+    <li>
+        <span>id: {{book.id}}</span> |
+        <strong>name: {{book.title}}</strong> |
+        <strong>Qty: {{book.qty}}</strong>
+    </li>
+    {% endfor %}
+</ol>
+{% else %}
+<h1>
+    your cart is empty
+</h1>
+{% endif %}
+{% endblock %}
