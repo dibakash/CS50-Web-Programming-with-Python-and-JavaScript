@@ -5,6 +5,7 @@ from cs50 import SQL
 
 app = Flask(__name__)
 
+# database
 db = SQL("sqlite:///store.db")
 
 app.config["SESSION_PERMANENT"] = False
