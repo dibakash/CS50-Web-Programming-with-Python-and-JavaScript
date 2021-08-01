@@ -49,7 +49,7 @@ def cart():
 @app.route("/buy")
 def buy():
     # cart items:
-    # modified cart to update quantities added to cart
+    # modified to update quantities added to cart
     cart_items = []
     if session["cart"]:
         for item in session["cart"]:
